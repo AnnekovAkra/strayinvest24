@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>РемСтрой — Строительство домов и бань в Череповце</title>
+    <!-- Подключение строгих шрифтов: Inter для таблиц/параметров и Oswald для жестких заголовков -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container header-wrapper">
+            <div class="logo-block">
+                <div class="logo-icon">Р</div>
+                <div class="logo-text">
+                    <h2>РемСтрой</h2>
+                    <p>Строительство и ремонт с гарантией</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#hero">Главная</a></li>
+                    <li><a href="#catalog">Каталог домов</a></li>
+                    <li><a href="#catalog">Готовые бани</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <a href="tel:+78202000000" class="phone-link">+7 (8202) 00-00-00</a>
+        </div>
+    </header>
+
+    <!-- Главный экран (Баннер) -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-wrapper">
+                <div class="hero-left">
+                    <div class="location-tag">Выгодные условия для <span>Череповца и Вологодской области</span></div>
+                    <h1>Строительство домов и готовые бани <span><em>под ключ</em></span></h1>
+                    <p>Проектируем и строим объекты любой сложности. Собственные бригады, честная смета без переплат и контроль качества на каждом этапе.</p>
+                    <a href="#catalog" class="btn-more">Смотреть каталог</a>
+                </div>
+                <div class="hero-right">
+                    <div class="worker-img"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Каталог проектов -->
+    <section class="catalog-section" id="catalog">
+        <div class="container">
+            
+            <div class="section-header">
+                <h2>Каталог проектов домов</h2>
+                <p>Цены актуальны на 2026 год. Выберите проект и обсудите технические детали напрямую с инженером.</p>
+            </div>
+
+            <div class="catalog-grid">
+                
+                <!-- Карточка 1 -->
+                <div class="catalog-card">
+                    <div class="card-image-wrap">
+                        <img src="https://unsplash.com" alt="Дом из газобетона">
+                        <span class="card-tag">Популярно</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Дом из газобетона «Усадьба-120»</h3>
+                        <div class="card-specs">
+                            <span>Площадь: <b>120 м²</b></span>
+                            <span>Срок: <b>от 4 мес.</b></span>
+                        </div>
+                        <div class="card-price">от 4 800 000 ₽</div>
+                        <button class="btn-fast-connect" onclick="openFastModal('Усадьба-120')">Обсудить проект с инженером</button>
+                    </div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="catalog-card">
+                    <div class="card-image-wrap">
+                        <img src="https://unsplash.com" alt="Каркасный дом">
+                        <span class="card-tag">Быстровозводимый</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Каркасный дом «Сканди-90»</h3>
+                        <div class="card-specs">
+                            <span>Площадь: <b>90 м²</b></span>
+                            <span>Срок: <b>от 2 мес.</b></span>
+                        </div>
+                        <div class="card-price">от 3 200 000 ₽</div>
+                        <button class="btn-fast-connect" onclick="openFastModal('Сканди-90')">Обсудить проект с инженером</button>
+                    </div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="catalog-card">
+                    <div class="card-image-wrap">
+                        <img src="https://unsplash.com" alt="Дом из кирпича">
+                        <span class="card-tag">Премиум</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Кирпичный дом «Монолит-160»</h3>
+                        <div class="card-specs">
+                            <span>Площадь: <b>160 м²</b></span>
+                            <span>Срок: <b>от 6 мес.</b></span>
+                        </div>
+                        <div class="card-price">от 7 500 000 ₽</div>
+                        <button class="btn-fast-connect" onclick="openFastModal('Монолит-160')">Обсудить проект с инженером</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно быстрой связи -->
+    <div class="modal-overlay" id="fastModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeFastModal()">×</button>
+            <h3 id="modalTitle">Связаться с инженером</h3>
+            <p class="modal-subtitle">Введите номер телефона для авторизации на сайте. Мы сразу откроем прямой чат с инженером компании в удобном для вас месте.</p>
+            
+            <form class="modal-form" onsubmit="handleFastReg(event)">
+                <div class="input-group">
+                    <label>Ваш номер телефона</label>
+                    <input type="tel" placeholder="+7 (999) 123-45-67" required id="userPhone">
+                </div>
+                
+                <div class="messenger-choice">
+                    <p>Где вам удобнее продолжить общение?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="messenger" value="telegram" checked> <span>Написать в Telegram</span></label>
+                        <label><input type="radio" name="messenger" value="whatsapp"> <span>Написать в WhatsApp</span></label>
+                        <label><input type="radio" name="messenger" value="call"> <span>Обычный телефонный звонок</span></label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit-reg">Войти на сайт и начать диалог</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Секция: Каталог готовых бань -->
+<section class="sauna-section" id="saunas">
+    <div class="container">
+        
+        <div class="section-header">
+            <h2>Готовые мобильные бани</h2>
+            <p>Доставка манипулятором по Череповцу и области. Установка на блоки за 1 день. Печь уже в комплекте.</p>
+        </div>
+
+        <div class="catalog-grid">
+            
+            <!-- Баня 1 -->
+            <div class="catalog-card">
+                <div class="card-image-wrap">
+                    <img src="https://unsplash.com" alt="Баня-бочка">
+                    <span class="card-tag price-hit">Хит продаж</span>
+                </div>
+                <div class="card-body">
+                    <h3>Баня-бочка «Круглая 4 метра»</h3>
+                    <div class="card-specs">
+                        <span>Длина: <b>4.0 м</b></span>
+                        <span>Парная: <b>на 4 человека</b></span>
+                    </div>
+                    <div class="sauna-features-list">
+                        <div>✓ Дровяная печь с дымоходом</div>
+                        <div>✓ Бак для воды на 50 литров</div>
+                        <div>✓ Полная разводка электрики</div>
+                    </div>
+                    <div class="card-price">от 240 000 ₽</div>
+                    <button class="btn-fast-connect" onclick="openFastModal('Баня-бочка 4м')">Заказать расчет доставки</button>
+                </div>
+            </div>
+
+            <!-- Баня 2 -->
+            <div class="catalog-card">
+                <div class="card-image-wrap">
+                    <img src="https://unsplash.com" alt="Квадро баня">
+                    <span class="card-tag">Просторная</span>
+                </div>
+                <div class="card-body">
+                    <h3>Квадро-баня «Комфорт 5 метров»</h3>
+                    <div class="card-specs">
+                        <span>Длина: <b>5.0 м</b></span>
+                        <span>Парная: <b>на 6 человек</b></span>
+                    </div>
+                    <div class="sauna-features-list">
+                        <div>✓ 3 отделения (комната отдыха, мыльня, парная)</div>
+                        <div>✓ Увеличенная высота потолка</div>
+                        <div>✓ Полки из бессучковой липы</div>
+                    </div>
+                    <div class="card-price">от 380 000 ₽</div>
+                    <button class="btn-fast-connect" onclick="openFastModal('Квадро-баня 5м')">Заказать расчет доставки</button>
+                </div>
+            </div>
+
+            <!-- Баня 3 -->
+            <div class="catalog-card">
+                <div class="card-image-wrap">
+                    <img src="https://unsplash.com" alt="Модульная баня">
+                    <span class="card-tag">Зимняя</span>
+                </div>
+                <div class="card-body">
+                    <h3>Модульная баня «Хай-Тек 6х2.4»</h3>
+                    <div class="card-specs">
+                        <span>Размер: <b>6.0 х 2.4 м</b></span>
+                        <span>Парная: <b>на 6 человек</b></span>
+                    </div>
+                    <div class="sauna-features-list">
+                        <div>✓ Утепление 100 мм для зимы</div>
+                        <div>✓ Панорамное окно в комнате отдыха</div>
+                        <div>✓ Современный внешний вид</div>
+                    </div>
+                    <div class="card-price">от 590 000 ₽</div>
+                    <button class="btn-fast-connect" onclick="openFastModal('Модульная баня Хай-Тек')">Заказать расчет доставки</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<ul class="nav-menu">
+    <li><a href="#hero">Главная</a></li>
+    <li><a href="#catalog">Каталог домов</a></li>
+    <li><a href="#saunas">Готовые бани</a></li>
+    <li><a href="#contacts">Контакты</a></li>
+</ul>
+<!-- Секция: Контакты и Карта -->
+<section class="contacts-section" id="contacts">
+    <div class="container">
+        
+        <div class="contacts-wrapper">
+            
+            <!-- Левая колонка: Информация -->
+            <div class="contacts-info">
+                <h2>Контакты компании</h2>
+                <p class="contacts-subtitle">Свяжитесь напрямую с прорабом или приезжайте на производство</p>
+                
+                <div class="contacts-list">
+                    <!-- Телефон -->
+                    <div class="contact-item">
+                        <div class="contact-label">Телефон для связи:</div>
+                        <a href="tel:+78202000000" class="contact-value">+7 (8202) 00-00-00</a>
+                        <span class="contact-note">Принимаем звонки ежедневно с 8:00 до 21:00</span>
+                    </div>
+
+                    <!-- Адрес -->
+                    <div class="contact-item">
+                        <div class="contact-label">Адрес офиса и производства:</div>
+                        <div class="contact-value-text">г. Черевопец, ул. Строителей, д. 12, офис 302</div>
+                        <span class="contact-note">Пожалуйста, предупредите о визите заранее, чтобы инженер был на месте</span>
+                    </div>
+
+                    <!-- Электронная почта -->
+                    <div class="contact-item">
+                        <div class="contact-label">Для отправки ваших чертежей и смет:</div>
+                        <a href="mailto:info@remstroy35.ru" class="contact-value-email">info@remstroy35.ru</a>
+                    </div>
+                </div>
+
+                <!-- Быстрые кнопки мессенджеров для мобильных -->
+                <div class="fast-chats">
+                    <a href="https://t.me" target="_blank" class="chat-btn btn-tg">Написать в Telegram</a>
+                    <a href="https://wa.me" target="_blank" class="chat-btn btn-wa">Написать в WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Правая колонка: Интерактивная карта -->
+            <div class="contacts-map">
+                <!-- Конструктор Яндекс.Карт, стилизованный под темную тему -->
+                <iframe src="https://yandex.ru" width="100%" height="450" frameborder="0"></iframe>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Подвал сайта (Footer) -->
+<footer class="main-footer">
+    <div class="container footer-inside">
+        <div>© 2026 РемСтрой Череповец. Строительство домов и бань под ключ.</div>
+        <div>ИНН: 352800000000 | ОГРНИП: 326352800000000</div>
+    </div>
+</footer>
+
+
+<style>
+    /* Базовые параметры */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg-black: #111111;       /* Глубокий матовый черный */
+    --bg-card: #1C1C1C;        /* Серый графит для блоков */
+    --accent-yellow: #F6C823;  /* Насыщенный строительный желтый */
+    --text-white: #FFFFFF;
+    --text-gray: #B3B3B3;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Шапка сайта */
+header {
+    background-color: rgba(17, 17, 17, 0.95);
+    border-bottom: 2px solid var(--accent-yellow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+}
+
+.logo-block {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-icon {
+    background-color: var(--accent-yellow);
+    color: #000;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    font-style: italic;
+}
+
+.logo-text h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.logo-text p {
+    font-size: 11px;
+    color: var(--text-gray);
+    margin-top: 4px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-menu a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.nav-menu a:hover {
+    color: var(--accent-yellow);
+}
+
+.phone-link {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent-yellow);
+    text-decoration: none;
+    background: rgba(246, 200, 35, 0.1);
+    padding: 10px 20px;
+    border: 1px solid var(--accent-yellow);
+    transition: all 0.3s;
+}
+
+.phone-link:hover {
+    background: var(--accent-yellow);
+    color: #000;
+}
+
+/* Главный экран */
+.hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding-top: 90px;
+    background: linear-gradient(90deg, rgba(17,17,17,0.95) 50%, rgba(17,17,17,0.4) 100%), 
+                url('https://unsplash.com') no-repeat center center/cover;
+    overflow: hidden;
+}
+
+/* Косой срез в стиле группы ВК */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -10%;
+    width: 40%;
+    height: 100%;
+    background: var(--accent-yellow);
+    transform: skewX(-15deg);
+    z-index: 1;
+    opacity: 0.85;
+}
+
+.hero-wrapper {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    width: 100%;
+}
+
+.location-tag {
+    display: inline-block;
+    background: #222;
+    border: 1px solid #444;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.location-tag span {
+    color: var(--accent-yellow);
+}
+
+.hero h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 54px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    background-color: var(--accent-yellow);
+    color: #000;
+    padding: 0 10px;
+    display: inline-block;
+    transform: skewX(-10deg);
+}
+
+.hero h1 span em {
+    font-style: normal;
+    display: inline-block;
+    transform: skewX(10deg);
+}
+
+.hero p {
+    font-size: 16px;
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin-bottom: 35px;
+    max-width: 500px;
+}
+
+.btn-more {
+    display: inline-block;
+    background-color: var(--accent-yellow);
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    border: 2px solid var(--accent-yellow);
+}
+
+/* Секция каталога */
+.catalog-section {
+    padding: 80px 0;
+    background-color: #161616;
+}
+
+.section-header {
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.section-header p {
+    color: var(--text-gray);
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.catalog-card {
+    background-color: var(--bg-card);
+    border: 1px solid #333;
+}
+
+.catalog-card:hover {
+    border-color: var(--accent-yellow);
+}
+
+.card-image-wrap {
+    position: relative;
+    height: 240px;
+}
+
+.card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #000;
+    color: var(--accent-yellow);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--accent-yellow);
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.card-body h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.card-specs {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-gray);
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333;
+}
+
+.card-specs b {
+    color: #fff;
+}
+
+.card-price {
+    font-family: 'Oswald', sans-serif;
+    font-size: 26px;
+    color: var(--accent-yellow);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Кнопка прямой связи */
+.btn-fast-connect {
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #444;
+    padding: 15px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-fast-connect:hover {
+    background-color: var(--accent-yellow);
+    color: #000;
+    border-color: var(--accent-yellow);
+}
+
+/* Окно быстрой регистрации */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-box {
+    background-color: #1A1A1A;
+    border: 3px solid var(--accent-yellow);
+    padding: 40px;
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.modal-box h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 26px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.modal-subtitle {
+    font-size: 13px;
+    color: var(--text-gray);
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent-yellow);
+}
+
+.input-group input {
+    background-color: #111;
+    border: 1px solid #444;
+    padding: 14px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.messenger-choice {
+    margin-bottom: 30px;
+}
+
+.messenger-choice p {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.radio-group input {
+    accent-color: var(--accent-yellow);
+    width: 18px;
+    height: 18px;
+}
+
+.btn-submit-reg {
+    width: 100%;
+    background-color: var(--accent-yellow);
+    color: #000;
+    border: none;
+    padding: 16px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/* Мобильный адаптив */
+@media (max-width: 992px) {
+    .nav-menu, .hero::before, .hero-right { display: none; }
+    .hero-wrapper { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 38px; }
+}
+
+/* --- Стили для каталога готовых бань --- */
+.sauna-section {
+    padding: 80px 0;
+    background-color: var(--bg-black); /* Возвращаем глубокий черный для чередования секций */
+    border-top: 1px solid #222;
+}
+
+/* Список того, что входит в стоимость бани */
+.sauna-features-list {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sauna-features-list div {
+    font-size: 13px;
+    color: var(--text-gray);
+    border-left: 2px solid var(--accent-yellow);
+    padding-left: 10px;
+}
+
+/* Изменение цвета ярлыка для акцента на хитах продаж */
+.card-tag.price-hit {
+    background-color: var(--accent-yellow);
+    color: #000;
+}
+
+/* --- Стили для секции контактов --- */
+.contacts-section {
+    padding: 80px 0;
+    background-color: #161616; /* Светлый графит для чередования */
+    border-top: 1px solid #222;
+}
+
+.contacts-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.contacts-info h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.contacts-subtitle {
+    color: var(--text-gray);
+    font-size: 15px;
+    margin-bottom: 40px;
+}
+
+.contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contact-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent-yellow);
+    letter-spacing: 0.5px;
+}
+
+.contact-value {
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    color: #fff;
+    text-decoration: none;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.contact-value:hover {
+    color: var(--accent-yellow);
+}
+
+.contact-value-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.contact-value-email {
+    font-size: 16px;
+    color: #fff;
+    text-decoration: underline;
+}
+
+.contact-value-email:hover {
+    color: var(--accent-yellow);
+}
+
+.contact-note {
+    font-size: 13px;
+    color: var(--text-gray);
+}
+
+/* Кнопки мессенджеров */
+.fast-chats {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.chat-btn {
+    padding: 15px 25px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    border: 2px solid #333;
+    transition: all 0.2s;
+}
+
+.btn-tg:hover {
+    background-color: #229ED9;
+    border-color: #229ED9;
+}
+
+.btn-wa:hover {
+    background-color: #25D366;
+    border-color: #25D366;
+    color: #000;
+}
+
+/* Рамка для карты */
+.contacts-map {
+    border: 3px solid #222;
+    background-color: #000;
+}
+
+.contacts-map iframe {
+    display: block;
+    filter: grayscale(1) invert(0.9) contrast(1.2); /* Принудительно делаем Яндекс.Карту стильной и темной */
+}
+
+/* Подвал */
+.main-footer {
+    background-color: #0F0F0F;
+    padding: 30px 0;
+    border-top: 1px solid #222;
+    font-size: 13px;
+    color: #666;
+}
+
+.footer-inside {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Адаптив для телефонов */
+@media (max-width: 992px) {
+    .contacts-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .contact-value { font-size: 26px; }
+}
+
+</style>
+
+<script>
+    // Функция открытия формы и подстановки выбранного проекта
+    function openFastModal(projectName) {
+        const modal = document.getElementById('fastModal');
+        const modalTitle = document.getElementById('modalTitle');
+        
+        modalTitle.innerText = 'Обсудить проект: ' + projectName;
+        modal.style.display = 'flex';
+    }
+
+    // Закрытие формы
+    function closeFastModal() {
+        document.getElementById('fastModal').style.display = 'none';
+    }
+
+    // Логика нажатия «Войти на сайт и начать диалог»
+    function handleFastReg(event) {
+        event.preventDefault();
+        const phone = document.getElementById('userPhone').value;
+        const messenger = document.querySelector('input[name="messenger"]:checked').value;
+        
+        // Симулируем успешный вход и перенаправление в мессенджер
+        alert(`Авторизация успешна!\nНомер ${phone} сохранен.\nСейчас вы будете перенаправлены к инженеру в выбранный канал связи.`);
+        
+        closeFastModal();
+        
+        // Пример настройки редиректа:
+        if(messenger === 'telegram') {
+            window.open('https://t.me', '_blank'); // Сюда ваш Telegram
+        } else if(messenger === 'whatsapp') {
+            window.open('https://wa.me', '_blank'); // Сюда ваш WhatsApp
+        }
+    }
+
+    // Закрытие окна, если человек кликнул мимо него
+    window.onclick = function(event) {
+        const modal = document.getElementById('fastModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
